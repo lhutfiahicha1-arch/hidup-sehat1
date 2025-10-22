@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mulai Hidup Sehatmu Hari Ini!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><circle cx="200" cy="100" r="80" fill="rgba(255,255,255,0.1)"/><circle cx="900" cy="400" r="120" fill="rgba(255,255,255,0.08)"/><circle cx="1000" cy="150" r="60" fill="rgba(255,255,255,0.1)"/><path d="M400,300 Q450,250 500,300 T600,300" stroke="rgba(255,255,255,0.1)" stroke-width="3" fill="none"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .hero-image {
+            font-size: 150px;
+            margin: 30px 0;
+            animation: bounce 2s infinite;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin: 60px 0 40px;
+            color: #667eea;
+        }
+
+        /* Articles Grid */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+
+        .article-content {
+            padding: 25px;
+        }
+
+        .article-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .article-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .read-more {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background 0.3s;
+        }
+
+        .read-more:hover {
+            background: #764ba2;
+        }
+
+        /* Interactive Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .feature-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-box h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: #764ba2;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f0f4ff;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .result h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        /* Water Reminder */
+        .reminder-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .reminder-controls input {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .reminder-controls button {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .reminder-status {
+            margin-top: 15px;
+            padding: 15px;
+            background: #e8f5e9;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .reminder-status.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .reminder-controls {
+                flex-direction: column;
+            }
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: none;
+            animation: slideInRight 0.5s ease;
+        }
+
+        .notification.show {
+            display: block;
+        }
+
+        .notification.water-alert {
+            border-left: 5px solid #2196F3;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Mulai Hidup Sehatmu Hari Ini!</h1>
+            <div class="hero-image">🏃‍♀️🥗💪</div>
+            <p>Temukan inspirasi, tips, dan panduan untuk hidup lebih seimbang dan bahagia.</p>
+            <a href="#articles" class="cta-button">Jelajahi Tips Sehat</a>
+        </div>
+    </section>
+
+    <!-- Articles Section -->
+    <div class="container">
+        <h2 class="section-title" id="articles">📚 Artikel Pilihan</h2>
+        <div class="articles-grid">
+            <div class="article-card">
+                <div class="article-image">🌅</div>
+                <div class="article-content">
+                    <h3>5 Kebiasaan Pagi yang Menyehatkan</h3>
+                    <p>Mulai hari dengan kebiasaan positif yang dapat meningkatkan energi dan produktivitas sepanjang hari.</p>
+                    <a href="#" class="read-more">Baca Selengkapnya</a>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image">🥗</div>
+                <div class="article-content">
+                    <h3>Rahasia Pola Makan Seimbang</h3>
+                    <p>Pelajari cara menyusun menu harian yang kaya nutrisi dan mendukung kesehatan optimal Anda.</p>
+                    <a href="#" class="read-more">Baca Selengkapnya</a>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image">🧘‍♀️</div>
+                <div class="article-content">
+                    <h3>Cara Sederhana Menjaga Kesehatan Mental</h3>
+                    <p>Tips praktis untuk mengelola stres dan menjaga keseimbangan mental di tengah kesibukan.</p>
+                    <a href="#" class="read-more">Baca Selengkapnya</a>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image">💪</div>
+                <div class="article-content">
+                    <h3>Olahraga Ringan untuk Pemula</h3>
+                    <p>Gerakan sederhana yang bisa dilakukan di rumah untuk memulai gaya hidup aktif.</p>
+                    <a href="#" class="read-more">Baca Selengkapnya</a>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image">😴</div>
+                <div class="article-content">
+                    <h3>Pentingnya Tidur Berkualitas</h3>
+                    <p>Rahasia mendapatkan istirahat optimal untuk pemulihan tubuh dan pikiran yang maksimal.</p>
+                    <a href="#" class="read-more">Baca Selengkapnya</a>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image">💧</div>
+                <div class="article-content">
+                    <h3>Manfaat Air Putih untuk Tubuh</h3>
+                    <p>Kenapa hidrasi yang cukup adalah kunci kesehatan dan bagaimana cara memenuhinya.</p>
+                    <a href="#" class="read-more">Baca Selengkapnya</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Features -->
+        <h2 class="section-title">🎯 Fitur Interaktif</h2>
+        <div class="features">
+            <!-- Kalkulator Kalori -->
+            <div class="feature-box">
+                <h3>🔢 Kalkulator Kalori</h3>
+                <p>Hitung kebutuhan kalori harian Anda</p>
+                
+                <div class="input-group">
+                    <label>Usia (tahun)</label>
+                    <input type="number" id="age" placeholder="Contoh: 25">
+                </div>
+
+                <div class="input-group">
+                    <label>Berat Badan (kg)</label>
+                    <input type="number" id="weight" placeholder="Contoh: 65">
+                </div>
+
+                <div class="input-group">
+                    <label>Tinggi Badan (cm)</label>
+                    <input type="number" id="height" placeholder="Contoh: 170">
+                </div>
+
+                <div class="input-group">
+                    <label>Jenis Kelamin</label>
+                    <select id="gender">
+                        <option value="male">Laki-laki</option>
+                        <option value="female">Perempuan</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Tingkat Aktivitas</label>
+                    <select id="activity">
+                        <option value="1.2">Sangat Ringan (jarang olahraga)</option>
+                        <option value="1.375">Ringan (olahraga 1-3x/minggu)</option>
+                        <option value="1.55">Sedang (olahraga 3-5x/minggu)</option>
+                        <option value="1.725">Berat (olahraga 6-7x/minggu)</option>
+                        <option value="1.9">Sangat Berat (atlet profesional)</option>
+                    </select>
+                </div>
+
+                <button class="btn" onclick="calculateCalories()">Hitung Kebutuhan Kalori</button>
+
+                <div class="result" id="calorieResult">
+                    <h4>Hasil Perhitungan:</h4>
+                    <p id="calorieOutput"></p>
+                </div>
+            </div>
+
+            <!-- Reminder Air Putih -->
+            <div class="feature-box">
+                <h3>💧 Reminder Air Putih</h3>
+                <p>Atur pengingat untuk minum air secara teratur</p>
+
+                <div class="input-group">
+                    <label>Interval Pengingat (menit)</label>
+                    <input type="number" id="reminderInterval" placeholder="Contoh: 60" value="60">
+                </div>
+
+                <div class="reminder-controls">
+                    <button class="btn" onclick="startReminder()">🔔 Aktifkan Pengingat</button>
+                    <button class="btn" onclick="stopReminder()" style="background: #e74c3c;">⏹ Hentikan</button>
+                </div>
+
+                <div class="reminder-status" id="reminderStatus">
+                    <p style="margin: 0; color: #2e7d32; font-weight: bold;">✅ Pengingat aktif! Anda akan diingatkan setiap <span id="intervalDisplay"></span> menit.</p>
+                    <p style="margin: 10px 0 0 0; font-size: 0.9em;">Target: 8 gelas per hari (±2 liter)</p>
+                </div>
+
+                <div style="margin-top: 20px; padding: 20px; background: #fff3cd; border-radius: 8px; border-left: 4px solid #ffc107;">
+                    <h4 style="color: #856404; margin-bottom: 10px;">💡 Tips Minum Air:</h4>
+                    <ul style="color: #856404; margin-left: 20px;">
+                        <li>Minum segelas air saat bangun tidur</li>
+                        <li>Bawa botol air ke mana pun Anda pergi</li>
+                        <li>Minum sebelum merasa haus</li>
+                        <li>Tambah konsumsi saat berolahraga</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification water-alert" id="waterNotification">
+        <h3 style="color: #2196F3; margin-bottom: 10px;">💧 Waktunya Minum Air!</h3>
+        <p style="margin: 0;">Jangan lupa minum segelas air putih untuk menjaga hidrasi tubuh Anda.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p style="font-size: 1.2em; margin-bottom: 10px;">🌿 Hidup Sehat, Hidup Bahagia</p>
+        <p>Dibuat dengan ❤️ oleh <strong>Icha Lhutfiah</strong></p>
+        <p style="margin-top: 15px; opacity: 0.8;">© 2024 - Semua hak dilindungi</p>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Kalkulator Kalori
+        function calculateCalories() {
+            const age = parseInt(document.getElementById('age').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const gender = document.getElementById('gender').value;
+            const activity = parseFloat(document.getElementById('activity').value);
+
+            if (!age || !weight || !height) {
+                alert('Mohon isi semua data dengan lengkap!');
+                return;
+            }
+
+            let bmr;
+            if (gender === 'male') {
+                // Rumus Mifflin-St Jeor untuk pria
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+            } else {
+                // Rumus Mifflin-St Jeor untuk wanita
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+            }
+
+            const tdee = Math.round(bmr * activity);
+            const resultDiv = document.getElementById('calorieResult');
+            const outputDiv = document.getElementById('calorieOutput');
+
+            outputDiv.innerHTML = `
+                <strong>Kebutuhan Kalori Harian Anda:</strong><br>
+                <div style="font-size: 2em; color: #667eea; font-weight: bold; margin: 15px 0;">${tdee} kalori/hari</div>
+                <hr style="margin: 15px 0; border: none; border-top: 1px solid #ddd;">
+                <strong>Rekomendasi:</strong><br>
+                • Untuk menurunkan berat: ${tdee - 500} kalori/hari<br>
+                • Untuk menjaga berat: ${tdee} kalori/hari<br>
+                • Untuk menaikkan berat: ${tdee + 500} kalori/hari
+            `;
+
+            resultDiv.classList.add('show');
+        }
+
+        // Water Reminder
+        let reminderInterval;
+        let isReminderActive = false;
+
+        function startReminder() {
+            const interval = parseInt(document.getElementById('reminderInterval').value);
+            
+            if (!interval || interval < 1) {
+                alert('Mohon masukkan interval yang valid (minimal 1 menit)!');
+                return;
+            }
+
+            if (isReminderActive) {
+                alert('Pengingat sudah aktif!');
+                return;
+            }
+
+            isReminderActive = true;
+            document.getElementById('intervalDisplay').textContent = interval;
+            document.getElementById('reminderStatus').classList.add('active');
+
+            // Set reminder
+            reminderInterval = setInterval(() => {
+                showWaterNotification();
+            }, interval * 60 * 1000);
+
+            alert(`Pengingat berhasil diaktifkan! Anda akan diingatkan setiap ${interval} menit.`);
+        }
+
+        function stopReminder() {
+            if (!isReminderActive) {
+                alert('Tidak ada pengingat yang aktif!');
+                return;
+            }
+
+            clearInterval(reminderInterval);
+            isReminderActive = false;
+            document.getElementById('reminderStatus').classList.remove('active');
+            alert('Pengingat telah dihentikan.');
+        }
+
+        function showWaterNotification() {
+            const notification = document.getElementById('waterNotification');
+            notification.classList.add('show');
+
+            // Play sound (optional - browser akan meminta izin)
+            if ('Notification' in window && Notification.permission === 'granted') {
+                new Notification('💧 Waktunya Minum Air!', {
+                    body: 'Jangan lupa minum segelas air putih untuk menjaga hidrasi tubuh Anda.',
+                    icon: '💧'
+                });
+            }
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        }
+
+        // Request notification permission
+        if ('Notification' in window && Notification.permission === 'default') {
+            Notification.requestPermission();
+        }
+
+        // Article read more
+        document.querySelectorAll('.read-more').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Artikel lengkap akan segera tersedia! 📖');
+            });
+        });
+    </script>
+</body>
+</html>
